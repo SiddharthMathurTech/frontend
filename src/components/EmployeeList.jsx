@@ -34,7 +34,7 @@ import {
 } from 'lucide-react';
 import { toast } from "sonner";
 
-import API_PATH from "constants"
+import API_PATH from "../../constants.js"
 
 
 // Predefined departments list
@@ -99,6 +99,8 @@ const EmployeeList = () => {
     try {
       // Build URL with query parameters
       let url = `${API_PATH}/employees/?skip=${skip}&limit=${limit}`;
+
+
       
       // Add filter parameters if they exist
       if (applyFilters) {
@@ -114,6 +116,8 @@ const EmployeeList = () => {
       }
       
       const response = await fetch(url);
+
+      console.log(response)
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -185,7 +189,7 @@ const EmployeeList = () => {
     const loadingToast = toast.loading('Adding new employee...');
     
     try {
-      const response = await fetch('http://localhost:8000/employee/', {
+      const response = await fetch(`${API_BASE_URL}/employee/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

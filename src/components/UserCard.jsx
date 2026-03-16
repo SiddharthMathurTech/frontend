@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import AttendanceModal from './AttendanceModal';
 import { CheckCircle, XCircle, Calendar, Eye, FileText, User, Trash2, Clock, Award } from 'lucide-react';
 
+import API_PATH from '../../constants.js';
+
 const UserCard = ({ 
   user = {
     name: "John Doe",
@@ -63,9 +65,10 @@ const UserCard = ({
     
     const loadingToast = toast.loading(`Deleting ${user.name}...`);
     
+   
     try {
       // FIXED: Changed from '/employees/' to '/employee/'
-      const response = await fetch(`http://localhost:8000/employee/${user.id}`, {
+      const response = await fetch(`${API_BASE_URL}/employee/${user.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

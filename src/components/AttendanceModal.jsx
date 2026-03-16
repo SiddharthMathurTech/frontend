@@ -23,6 +23,8 @@ import {
 } from 'lucide-react';
 import { format, isToday, isFuture, parseISO, isValid, startOfMonth, endOfMonth, eachDayOfInterval, getDay, addMonths, subMonths } from 'date-fns';
 
+import API_PATH from "../../constants.js"
+
 const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [attendanceData, setAttendanceData] = useState([]);
@@ -35,9 +37,10 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
   const fetchAttendanceHistory = async () => {
     if (!user?.id) return;
     
+    
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8000/attendance/${user.id}`);
+      const response = await fetch(`${API_BASE_URL}/attendance/${user.id}`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setAttendanceData(Array.isArray(data) ? data : [data]);
@@ -67,7 +70,7 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
 
     setMarkingAttendance(true);
     try {
-      const response = await fetch('http://localhost:8000/attendance/', {
+      const response = await fetch(`${API_BASE_URL}/attendance/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
