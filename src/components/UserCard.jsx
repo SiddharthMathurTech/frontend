@@ -68,7 +68,7 @@ const UserCard = ({
    
     try {
       // FIXED: Changed from '/employees/' to '/employee/'
-      const response = await fetch(`${API_BASE_URL}/employee/${user.id}`, {
+      const response = await fetch(`${API_PATH}/employee/${user.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

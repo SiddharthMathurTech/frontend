@@ -189,7 +189,7 @@ const EmployeeList = () => {
     const loadingToast = toast.loading('Adding new employee...');
     
     try {
-      const response = await fetch(`${API_BASE_URL}/employee/`, {
+      const response = await fetch(`${API_PATH}/employee/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

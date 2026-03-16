@@ -40,7 +40,7 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
     
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/attendance/${user.id}`);
+      const response = await fetch(`${API_PATH}/attendance/${user.id}`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setAttendanceData(Array.isArray(data) ? data : [data]);
@@ -70,7 +70,7 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
 
     setMarkingAttendance(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/attendance/`, {
+      const response = await fetch(`${API_PATH}/attendance/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
