@@ -68,7 +68,7 @@ const UserCard = ({
    
     try {
       // FIXED: Changed from '/employees/' to '/employee/'
-      const response = await fetch(`${API_PATH}/employee/${user.id}`, {
+      const response = await fetch(`${API_PATH}/employee/${user.user_id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const UserCard = ({
         });
         
         if (onDeleteSuccess) {
-          onDeleteSuccess(user.id);
+          onDeleteSuccess(user.user_id);
         }
       } else if (response.status === 422) {
         const errorData = await response.json();
@@ -132,7 +132,7 @@ const UserCard = ({
                 <h3 className="text-lg font-bold text-gray-900 truncate">{user.name}</h3>
                 <div className="flex flex-col space-y-1 mt-1">
                   <span className="text-xs font-mono text-gray-500 bg-gray-100 px-2 py-1 rounded inline-block w-fit">
-                    {user.id ? `EMP${user.id}` : 'N/A'}
+                    {user.user_id ? `EMP${user.user_id}` : 'N/A'}
                   </span>
                   {user.email && (
                     <span className="text-xs text-gray-600 truncate flex items-center">
