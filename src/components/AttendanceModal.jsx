@@ -33,6 +33,8 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
   const [selectedStatus, setSelectedStatus] = useState('Present');
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
+
+
   // Fetch attendance history
   const fetchAttendanceHistory = async () => {
     if (!user?.id) return;
@@ -40,7 +42,7 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
     
     setLoading(true);
     try {
-      const response = await fetch(`${API_PATH}/attendance/${user.id}`);
+      const response = await fetch(`${API_PATH}/attendance/${user.user_id}`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setAttendanceData(Array.isArray(data) ? data : [data]);
@@ -54,7 +56,7 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
 
   // Mark attendance
   const handleMarkAttendance = async () => {
-    if (!user?.id) return;
+    if (!user?.user_id) return;
     if (isFuture(selectedDate)) {
       toast.error('Cannot mark attendance for future dates');
       return;
@@ -76,7 +78,7 @@ const AttendanceModal = ({ isOpen, onClose, user, onAttendanceMarked }) => {
         body: JSON.stringify({
           attendance_date: formattedDate,
           status: selectedStatus,
-          user_id: user.id
+          user_id: user.user_id
         }),
       });
 
