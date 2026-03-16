@@ -34,6 +34,9 @@ import {
 } from 'lucide-react';
 import { toast } from "sonner";
 
+import API_PATH from "constants"
+
+
 // Predefined departments list
 const DEPARTMENTS = [
   { value: 'Engineering', label: 'Engineering' },
@@ -95,7 +98,7 @@ const EmployeeList = () => {
     
     try {
       // Build URL with query parameters
-      let url = `http://localhost:8000/employees/?skip=${skip}&limit=${limit}`;
+      let url = `${API_PATH}/employees/?skip=${skip}&limit=${limit}`;
       
       // Add filter parameters if they exist
       if (applyFilters) {
