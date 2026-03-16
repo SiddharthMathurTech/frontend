@@ -45,6 +45,9 @@ const UserCard = ({
     return ((present / total) * 100).toFixed(1);
   };
 
+
+  console.log()
+
   const getStatusColor = () => {
     const percentage = parseFloat(calculateAttendancePercentage());
     if (percentage >= 75) return 'text-green-600';
@@ -132,7 +135,7 @@ const UserCard = ({
                 <h3 className="text-lg font-bold text-gray-900 truncate">{user.name}</h3>
                 <div className="flex flex-col space-y-1 mt-1">
                   <span className="text-xs font-mono text-gray-500 bg-gray-100 px-2 py-1 rounded inline-block w-fit">
-                    {user.user_id ? `EMP${user.user_id}` : 'N/A'}
+                    {user.user_id ? `EMP${user.id}` : 'N/A'}
                   </span>
                   {user.email && (
                     <span className="text-xs text-gray-600 truncate flex items-center">
